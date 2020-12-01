@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(Hewan::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Hewan::class, Pemilik::class), version = 1, exportSchema = false)
 public abstract class AdopsiDB : RoomDatabase() {
 
     abstract fun wordDao(): HewanDao
+    abstract fun pemilikDao(): PemilikDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
