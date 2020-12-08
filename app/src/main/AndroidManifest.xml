@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListHewanActivity"></activity>
+        <activity android:name=".ListPemilik"></activity>
+        <activity android:name=".AddPemilik" />
+        <activity android:name=".ListHewanActivity" />
         <activity android:name=".AddHewan_Activity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -3,3 +3,4 @@
 - Nayottama Satya Hutama - 18090004 - 5C
 
 > We use Room Database for local storage/database of android application
+> Application topic is Adopsi Hewan

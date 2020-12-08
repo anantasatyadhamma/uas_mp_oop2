@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class Pemilik (
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "nama_pemilik") val nama_pemilik: String,
-    @ColumnInfo(name = "umur") val umur: Int,
-    @ColumnInfo(name = "no_hp") val no_hp: Int,
+    @ColumnInfo(name = "umur") val umur: String,
+    @ColumnInfo(name = "no_hp") val no_hp: String,
     @ColumnInfo(name = "alamat") val alamat: String,
-    @ColumnInfo(name = "hewan_adopsi") val hewan_adopsi: Int,
+    @ColumnInfo(name = "hewan_adopsi") val hewan_adopsi: String,
 )
