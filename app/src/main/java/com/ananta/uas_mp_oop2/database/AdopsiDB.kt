@@ -6,7 +6,7 @@ import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 
 @Database(entities = arrayOf(Hewan::class, Pemilik::class), version = 1, exportSchema = false)
-public abstract class AdopsiDB : RoomDatabase() {
+abstract class AdopsiDB : RoomDatabase() {
 
     abstract fun hewanDao(): HewanDao
     abstract fun pemilikDao(): PemilikDao
