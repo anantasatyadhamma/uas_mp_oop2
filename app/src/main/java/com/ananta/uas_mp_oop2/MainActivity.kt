@@ -11,6 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         addHewan()
         getListHewan()
+        addPemilik()
+        getListPemilik()
     }
 
      fun addHewan() {
@@ -25,5 +27,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun addPemilik() {
+        btn_add_pemilik.setOnClickListener{
+            startActivity(Intent(this, AddPemilik::class.java))
+        }
+    }
 
+    fun getListPemilik(){
+        btn_list_pemilik.setOnClickListener{
+            startActivity(Intent(this, ListPemilik::class.java))
+        }
+    }
 }
