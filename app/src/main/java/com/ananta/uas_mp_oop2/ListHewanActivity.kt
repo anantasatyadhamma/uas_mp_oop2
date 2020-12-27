@@ -1,5 +1,6 @@
 package com.ananta.uas_mp_oop2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.ananta.uas_mp_oop2.database.AdopsiDB
+import com.ananta.uas_mp_oop2.database.Constant
 import com.ananta.uas_mp_oop2.database.Hewan
 import kotlinx.android.synthetic.main.activity_list_hewan.*
 import kotlinx.coroutines.CoroutineScope
@@ -42,6 +44,14 @@ class ListHewanActivity : AppCompatActivity() {
         }
     }
 
+    fun intentEdit(hewanId: Int, intentType: Int){
+        startActivity(
+            Intent(applicationContext, AddHewan_Activity::class.java)
+                .putExtra("intent_id", hewanId)
+                .putExtra("intent_type", intentType)
+        )
+    }
+
     private fun setupRecyclerView(){
         hewanAdapter = HewanAdapter(arrayListOf(), object  : HewanAdapter.onAdapterListener{
             override fun onClick(hewan: Hewan) {
@@ -53,6 +63,10 @@ class ListHewanActivity : AppCompatActivity() {
                     db.hewanDao().deleteHewan(hewan)
                     loadData()
                 }
+            }
+
+            override fun onUpdate(hewan: Hewan) {
+                intentEdit(hewan.id,Constant.TYPE_UPDATE)
             }
 
         })

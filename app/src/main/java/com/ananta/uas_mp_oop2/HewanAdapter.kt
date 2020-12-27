@@ -33,6 +33,9 @@ class HewanAdapter (private val hewan: ArrayList<Hewan>, private val listener: o
         holder.view.icon_delete.setOnClickListener {
             listener.onDelete(h)
         }
+        holder.view.icon_edit.setOnClickListener {
+            listener.onUpdate(h)
+        }
 
     }
 
@@ -41,6 +44,7 @@ class HewanAdapter (private val hewan: ArrayList<Hewan>, private val listener: o
     interface onAdapterListener{
         fun onClick(hewan: Hewan)
         fun onDelete(hewan: Hewan)
+        fun onUpdate(hewan: Hewan)
     }
 
 }
