@@ -33,7 +33,9 @@ class PemilikAdapter (private val pemilik: ArrayList<Pemilik>, private val liste
             holder.view.icon_delete.setOnClickListener {
                 listener.onDelete(h)
             }
-
+            holder.view.icon_edit.setOnClickListener {
+                listener.onUpdate(h)
+            }
         }
 
         override fun getItemCount() = pemilik.size
@@ -41,5 +43,6 @@ class PemilikAdapter (private val pemilik: ArrayList<Pemilik>, private val liste
         interface onAdapterListener{
             fun onClick(hewan: Pemilik)
             fun onDelete(hewan: Pemilik)
+            fun onUpdate(hewan: Pemilik)
         }
 }

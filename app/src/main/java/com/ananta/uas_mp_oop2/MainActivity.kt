@@ -38,8 +38,16 @@ class MainActivity : AppCompatActivity() {
 
     fun addPemilik() {
         btn_add_pemilik.setOnClickListener{
-            startActivity(Intent(this, AddPemilik::class.java))
+            intentEditPemilik(0, Constant.TYPE_CREATE)
         }
+    }
+
+    fun intentEditPemilik(pemilikId: Int, intentType: Int){
+        startActivity(
+            Intent(applicationContext, AddPemilik::class.java)
+                .putExtra("intent_id", pemilikId)
+                .putExtra("intent_type", intentType)
+        )
     }
 
     fun getListPemilik(){

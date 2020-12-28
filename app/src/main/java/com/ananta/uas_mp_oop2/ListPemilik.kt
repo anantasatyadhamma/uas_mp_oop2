@@ -1,11 +1,13 @@
 package com.ananta.uas_mp_oop2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ananta.uas_mp_oop2.database.AdopsiDB
+import com.ananta.uas_mp_oop2.database.Constant
 import com.ananta.uas_mp_oop2.database.Pemilik
 import kotlinx.android.synthetic.main.activity_list_pemilik.*
 import kotlinx.coroutines.CoroutineScope
@@ -36,6 +38,13 @@ class ListPemilik : AppCompatActivity() {
             }
         }
     }
+    fun intentEdit(pemilikId: Int, intentType: Int){
+        startActivity(
+            Intent(applicationContext, AddPemilik::class.java)
+                .putExtra("intent_id", pemilikId)
+                .putExtra("intent_type", intentType)
+        )
+    }
     private fun setupRecyclerView(){
         pemilikAdapter = PemilikAdapter(arrayListOf(), object  : PemilikAdapter.onAdapterListener{
             override fun onClick(pemilik: Pemilik) {
@@ -48,7 +57,9 @@ class ListPemilik : AppCompatActivity() {
                     loadData()
                 }
             }
-
+            override fun onUpdate(pemilik: Pemilik) {
+                intentEdit(pemilik.id, Constant.TYPE_UPDATE)
+            }
         })
         list_pemilik.apply {
             layoutManager = LinearLayoutManager(applicationContext)
