@@ -7,6 +7,9 @@ interface PemilikDao {
     @Query("SELECT * FROM pemilik ORDER BY id ASC")
     fun getPemilik(): List<Pemilik>
 
+    @Query("SELECT * FROM pemilik WHERE id=:pemilik_id")
+    suspend fun getPemilikId(pemilik_id: Int): List<Pemilik>
+
     @Insert
     fun insert(pemilik: Pemilik)
 
