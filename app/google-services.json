@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "19821621058",
+    "project_id": "uas-mp-oop",
+    "storage_bucket": "uas-mp-oop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19821621058:android:84dbb3432f69dc24dfa2db",
+        "android_client_info": {
+          "package_name": "com.ananta.uas_mp_oop2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19821621058-nk9jn243ejovek9kpb3bb5d2qih3r8h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcHhVg5Z-dIAGqOd4ngoV4cagLQu6aWUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19821621058-nk9jn243ejovek9kpb3bb5d2qih3r8h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
