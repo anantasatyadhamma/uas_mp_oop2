@@ -10,11 +10,12 @@ import kotlinx.android.synthetic.main.activity_add_hewan_.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class AddHewan_Activity : AppCompatActivity() {
 
     val db by lazy {AdopsiDB.getDatabase(this)}
-    private var hewanId: Int = 0
+    private var hewanId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +42,9 @@ class AddHewan_Activity : AppCompatActivity() {
     fun addHewan(){
         btn_create_hewan.setOnClickListener{
             CoroutineScope(Dispatchers.IO).launch {
+                val uuid : String = UUID.randomUUID().toString()
                 db.hewanDao().insert(
-                    Hewan(0, edtNameHewan.text.toString(), edtJK.text.toString(), edtUmurHewan.text.toString(), edtRas.text.toString(), edtOwner.text.toString())
+                    Hewan(uuid, edtNameHewan.text.toString(), edtJK.text.toString(), edtUmurHewan.text.toString(), edtRas.text.toString(), edtOwner.text.toString())
 
                 )
                 finish()
@@ -60,7 +62,7 @@ class AddHewan_Activity : AppCompatActivity() {
     }
 
     fun getHewan(){
-        hewanId = intent.getIntExtra("intent_id", 0)
+        hewanId = intent.getStringExtra("intent_id", ).toString()
         CoroutineScope(Dispatchers.IO).launch {
             val data = db.hewanDao().getHewanId(hewanId)[0]
             edtNameHewan.setText(data.nama_hewan)

@@ -9,9 +9,9 @@ interface HewanDao {
     suspend fun getHewan(): List<Hewan>
 
     @Query("SELECT * FROM hewan WHERE id=:hewan_id")
-    suspend fun getHewanId(hewan_id: Int): List<Hewan>
+    suspend fun getHewanId(hewan_id: String): List<Hewan>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(hewan: Hewan)
 
     @Update
@@ -19,5 +19,6 @@ interface HewanDao {
 
     @Delete
     suspend fun deleteHewan(hewan: Hewan)
+
 
 }

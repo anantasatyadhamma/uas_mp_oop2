@@ -44,7 +44,7 @@ class ListHewanActivity : AppCompatActivity() {
         }
     }
 
-    fun intentEdit(hewanId: Int, intentType: Int){
+    fun intentEdit(hewanId: String, intentType: Int){
         startActivity(
             Intent(applicationContext, AddHewan_Activity::class.java)
                 .putExtra("intent_id", hewanId)

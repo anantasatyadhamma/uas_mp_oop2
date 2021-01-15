@@ -1,5 +1,6 @@
 package com.ananta.uas_mp_oop2
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,10 @@ class HewanAdapter (private val hewan: ArrayList<Hewan>, private val listener: o
 
     }
 
-    override fun getItemCount() = hewan.size
+    override fun getItemCount(): Int {
+        Log.d("count", hewan.size.toString())
+        return hewan.size
+    }
 
     interface onAdapterListener{
         fun onClick(hewan: Hewan)

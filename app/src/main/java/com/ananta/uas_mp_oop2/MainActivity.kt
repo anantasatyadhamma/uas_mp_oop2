@@ -3,10 +3,29 @@ package com.ananta.uas_mp_oop2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.ananta.uas_mp_oop2.database.AdopsiDB
 import com.ananta.uas_mp_oop2.database.Constant
+import com.ananta.uas_mp_oop2.database.Hewan
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_add_hewan_.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
+
+    val db by lazy { AdopsiDB.getDatabase(this)}
+    val database = Firebase.database
+    lateinit var hewanAdapter: HewanAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         getListHewan()
         addPemilik()
         getListPemilik()
+        sync_hewan()
     }
 
      fun addHewan() {
@@ -55,4 +75,64 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ListPemilik::class.java))
         }
     }
+
+    fun sync_hewan(){
+        btnSync1.setOnClickListener {
+            getDataFromFirebase()
+            addDataToFirebase()
+        }
+    }
+
+    private fun getDataFromFirebase(){
+
+        val refHewan = database.getReference("hewan")
+
+        refHewan.addListenerForSingleValueEvent(object : ValueEventListener {
+            var uid = ""
+            var nama_hewan = ""
+            var jenis_kelamin = ""
+            var umur = ""
+            var ras = ""
+            var owner = ""
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (ds in snapshot.children) {
+                    uid = ds.child("id").getValue(String::class.java).toString()
+                    nama_hewan = ds.child("nama_hewan").getValue(String::class.java).toString()
+                    jenis_kelamin = ds.child("jenis_kelamin").getValue(String::class.java).toString()
+                    umur = ds.child("umur").getValue(String::class.java).toString()
+                    ras = ds.child("ras").getValue(String::class.java).toString()
+                    owner = ds.child("owner").getValue(String::class.java).toString()
+
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        if (snapshot != null) {
+
+                            db.hewanDao().insert(Hewan(uid, nama_hewan, jenis_kelamin, umur, ras, owner))
+
+                        }
+                    }
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+                Log.d("errornya", error.toString())
+            }
+        })
+    }
+
+    private fun addDataToFirebase(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val hewan =  db.hewanDao().getHewan()
+            Log.d("ListHewanMain", "respons : $hewan")
+            withContext(Dispatchers.Main){
+                val refHewan = database.getReference("hewan")
+                refHewan.setValue(hewan)
+            }
+        }
+
+    }
+
 }
