@@ -38,7 +38,7 @@ class ListPemilik : AppCompatActivity() {
             }
         }
     }
-    fun intentEdit(pemilikId: Int, intentType: Int){
+    fun intentEdit(pemilikId: String, intentType: Int){
         startActivity(
             Intent(applicationContext, AddPemilik::class.java)
                 .putExtra("intent_id", pemilikId)

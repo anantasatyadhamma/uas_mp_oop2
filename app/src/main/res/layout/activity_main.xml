@@ -102,4 +102,19 @@
         android:text="Sync Hewan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_add_pemilik" />
+
+    <Button
+        android:id="@+id/btnSync2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginRight="65dp"
+        android:text="SYNC PEMILIK"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnSync1"
+        app:layout_constraintTop_toBottomOf="@+id/btn_list_pemilik" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.ananta.uas_mp_oop2
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,11 +39,14 @@ class PemilikAdapter (private val pemilik: ArrayList<Pemilik>, private val liste
             }
         }
 
-        override fun getItemCount() = pemilik.size
+        override fun getItemCount(): Int {
+            Log.d("count", pemilik.size.toString())
+            return pemilik.size
+        }
 
         interface onAdapterListener{
-            fun onClick(hewan: Pemilik)
-            fun onDelete(hewan: Pemilik)
-            fun onUpdate(hewan: Pemilik)
+            fun onClick(pemilik: Pemilik)
+            fun onDelete(pemilik: Pemilik)
+            fun onUpdate(pemilik: Pemilik)
         }
 }
